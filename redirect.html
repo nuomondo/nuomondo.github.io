@@ -9,23 +9,31 @@
             // Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const room = urlParams.get('room');
-
+            
             if (room) {
                 const deepLink = `millquiz://join?room=${room}`;
                 const googlePlayLink = "https://play.google.com/store/apps/details?id=com.nuomondo.millionaire.quiz";
                 const appStoreLink = "https://apps.apple.com/app/millionaire-quiz-game-trivia/id6482421956"; 
 
-                let startTime = Date.now();
+                let appOpened = false
+
                 window.location.href = deepLink;
 
+                window.addEventListener("blur", function () {
+                    appOpened = true;
+                });
+                
                 // If the app hasn’t opened within 2 seconds, redirect to the appropriate store
                 setTimeout(() => {
-                    if (Date.now() - startTime < 2000) {
+                    if (!appOpened) {
                         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                            console.log("ios")
                             window.location.href = appStoreLink;  // Redirect to App Store on iOS
                         } else if (/android/i.test(navigator.userAgent)) {
+                            console.log("droid")
                             window.location.href = googlePlayLink;  // Redirect to Google Play on Android
                         } else {
+                            console.log("web")
                             document.getElementById("fallback").innerHTML =
                                 `<p>It looks like your device is not supported. <br>
                                 <a href="${googlePlayLink}">Google Play</a> | 
@@ -35,10 +43,10 @@
                 }, 2000);
 
                 // Show fallback manual link if redirection fails
-                //setTimeout(() => {
+                // setTimeout(() => {
                 //    document.getElementById("fallback").innerHTML =
                 //        `<p>If you are not redirected, <a href="${deepLink}">click here</a>.</p>`;
-                //}, 3000);
+                // }, 3000);
             } else {
                 document.body.innerHTML = "<h3>Invalid link. Room parameter is missing.</h3>";
             }
