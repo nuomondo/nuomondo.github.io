@@ -35,10 +35,10 @@
                 }, 2000);
 
                 // Show fallback manual link if redirection fails
-                setTimeout(() => {
-                    document.getElementById("fallback").innerHTML =
-                        `<p>If you are not redirected, <a href="${deepLink}">click here</a>.</p>`;
-                }, 3000);
+                //setTimeout(() => {
+                //    document.getElementById("fallback").innerHTML =
+                //        `<p>If you are not redirected, <a href="${deepLink}">click here</a>.</p>`;
+                //}, 3000);
             } else {
                 document.body.innerHTML = "<h3>Invalid link. Room parameter is missing.</h3>";
             }
