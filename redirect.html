@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        window.onload = function () {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const room = urlParams.get('room');
+
+            if (room) {
+                // Construct the deep link
+                const deepLink = `millquiz://join?room=${room}`;
+
+                // Redirect to the deep link
+                window.location.href = deepLink;
+
+                // Optional: Show a fallback link for users if the redirect doesn't work
+                setTimeout(() => {
+                    document.getElementById("fallback").innerHTML =
+                        `<p>If you are not redirected, <a href="${deepLink}">click here</a>.</p>`;
+                }, 2000);
+            } else {
+                document.body.innerHTML = "<h3>Invalid link. Room parameter is missing.</h3>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <h2>Redirecting to your game...</h2>
+    <div id="fallback"></div>
+</body>
+</html>
