@@ -403,3 +403,6 @@ appnexus.com, 17234, RESELLER
 onetag.com, 5d1628750185ace, RESELLER
 pubnative.net, 1007262, RESELLER, d641df8625486a7b
 conversantmedia.com, 100396, RESELLER, 03113cd04947736d
+applovin.com, 9eaf9ad6dc92d5fcn6f47c30168fb8fq, DIRECT
+mintegral.com, 19435, DIRECT, 0aeed123c80d6423
+google.com, pub-3940498599942544, DIRECT, f08c47fec0986fa0
